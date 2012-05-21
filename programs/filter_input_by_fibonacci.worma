@@ -1,0 +1,53 @@
+#
+# print only input numbers that are in the fibonacci sequence
+#
+
+    # D holds input
+
+  L10: # while (!EOF) {
+    MOVE   %A, %E
+    JMP_NZ L11
+
+    #        D = read()
+    READ
+    MOVE   %D, %A
+
+    #        B = C = 1
+    SET    %B, $1
+    SET    %C, $1
+
+  L20: #     while (B < D && C < D) {
+    SET    %A, $1
+    SUB    %A, %D
+    ADD    %A, %B
+    JMP_GT L21
+    SET    %A, $1
+    SUB    %A, %D
+    ADD    %A, %C
+    JMP_GT L21
+
+    #            # next two fib numbers
+    #            B += C
+    ADD    %B, %C
+    #            C += B
+    ADD    %C, %B
+
+    JMP    L20
+  L21: #     }
+
+    #        if (D == B || D == C) {
+    # because of how the cmp was done, if A == 1, then D == one of them
+    SET    %B, $1
+    SUB    %A, %B
+    JMP_NZ L10
+
+    #            write(D)
+    MOVE   %A, %D
+    WRITE
+
+    #        }
+    JMP    L10
+  L11: # }
+
+    NOOP
+

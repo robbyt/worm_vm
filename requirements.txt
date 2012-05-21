@@ -1,2 +1,4 @@
+LEPL==5.1.2
 distribute==0.6.24
-wsgiref==0.1.2
+ipython==0.12.1
+readline==6.2.2
