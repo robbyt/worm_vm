@@ -21,7 +21,7 @@ Running the VM in debug mode
 ----------------------------
 
 ```bash
-export WORM_DEBUG=true
+$ export WORM_DEBUG=true
 $ worm_vm/vm.py programs/print_expression.wormbc
 ```
 
