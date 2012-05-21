@@ -2,7 +2,7 @@ import sys
 import logging
 logger = logging.getLogger('ops')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 def op_noop(self):
     logger.debug('op_noop')

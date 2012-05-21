@@ -1,7 +1,7 @@
 import logging
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 
-import lepl
+from lepl.stream.maxdepth import FullFirstMatchException as ParseException
 
 import worm_ops as ops
 import wormos_bc_parser
@@ -50,7 +50,7 @@ class WormOS(object):
             try:
                 li = wormos_bc_parser.parser.parse(i)
                 self.exe.append(li)
-            except lepl.stream.maxdepth.FullFirstMatchException:
+            except ParseException:
                 # to handle parse errors
                 logging.error("Error parsing byte code on line %s!!!" %
                              (str(len(self.exe) + 1)))
