@@ -1,5 +1,4 @@
-import lepl
-from lepl import Any, Literal, Literals, Newline, Optional
+from lepl import Any, Literal, Literals, Newline, Optional, Or
 
 # start a cpu instance and find out what our registers are called
 from cpu import Cpu
@@ -57,6 +56,6 @@ op_jmp_gt = Literal('E') & op_jmp_base
 op_jmp_lt = Literal('F') & op_jmp_base
 
 
-parser = lepl.Or(op_noop, op_set, op_move, op_load, op_store, op_read, op_write, 
+parser = Or(op_noop, op_set, op_move, op_load, op_store, op_read, op_write, 
                  op_add, op_sub, op_mul, op_div, op_jmp, op_jmp_z, op_jmp_nz,
                  op_jmp_gt, op_jmp_lt)
