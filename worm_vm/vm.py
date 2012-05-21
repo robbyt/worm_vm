@@ -4,19 +4,23 @@ from memory import Memory
 from bios import Bios
 from wormos import WormOS
 
-DEBUG_MODE = True
-
-# create cpu and ram
-cpu = Cpu(debug=DEBUG_MODE)
-memory = Memory(debug=DEBUG_MODE)
-
-# plug the cpu and ram into the bios
-bios = Bios(cpu, memory, debug=DEBUG_MODE)
-
-# boot the worm os
-wormos = WormOS(debug=DEBUG_MODE)
 
 def main(args):
+    import os
+    debug_envar = os.environ.get('WORM_DEBUG')
+    debug_mode = True if debug_envar is 'true' else False
+
+    # create cpu and ram
+    cpu = Cpu(debug=debug_mode)
+    memory = Memory(debug=debug_mode)
+
+    # plug the cpu and ram into the bios
+    bios = Bios(cpu, memory, debug=debug_mode)
+
+    # boot the worm os
+    wormos = WormOS(debug=debug_mode)
+
+
     # first check if a bytecode file was sent as a 1st arg
     if len(args) == 2:
         
