@@ -7,8 +7,14 @@ interpreting and executing "worm" bytecode.
 Working with this VM
 --------------------
 
+First, this vm requires the lepl python parser, so install that from pip.
 ```bash
-$ vm/vm.py programs/print_expression.wormbc
+$ pip install lepl
+```
+
+Once lepl is installed, you can run the VM with a simple example bytecode file
+```bash
+$ worm_vm/vm.py programs/print_expression.wormbc
 ```
 
 Running the VM in debug mode
@@ -16,7 +22,7 @@ Running the VM in debug mode
 
 ```bash
 export WORM_DEBUG=true
-$ vm/vm.py programs/print_expression.wormbc
+$ worm_vm/vm.py programs/print_expression.wormbc
 ```
 
 
