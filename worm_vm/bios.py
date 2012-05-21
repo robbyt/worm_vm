@@ -1,3 +1,4 @@
+import sys
 import logging
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 
@@ -27,14 +28,18 @@ class Bios(object):
 
             All of the raw python functions in Index0 are defined in
         """
-        while not self.cpu.REG[5]:
-            current_pc_index = self.cpu.get_pc()
+        try:
+            while not self.cpu.REG[5]:
+                current_pc_index = self.cpu.get_pc()
 
-            if self.debug:
-                logging.info("Bios running PC: %s" % current_pc_index)
+                if self.debug:
+                    logging.info("Bios running PC: %s" % current_pc_index)
 
-            self._run_op(machine_code[current_pc_index][0],
-                         machine_code[current_pc_index][1])
+                self._run_op(machine_code[current_pc_index][0],
+                             machine_code[current_pc_index][1])
+        except KeyboardInterrupt:
+            print "Goodbye."
+            sys.exit(0)
 
 
 
