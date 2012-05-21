@@ -8,7 +8,7 @@ from wormos import WormOS
 def main(args):
     import os
     debug_envar = os.environ.get('WORM_DEBUG', 'false')
-    debug_mode = True if debug_envar.lower() is 'true' else False
+    debug_mode = True if debug_envar.lower() == 'true' else False
 
     # create cpu and ram
     cpu = Cpu(debug=debug_mode)
