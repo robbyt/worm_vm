@@ -26,7 +26,9 @@ class Bios(object):
             and Index1 contains some optional argument data such as the
             constant that should be set on the CPU register.
 
-            All of the raw python functions in Index0 are defined in
+            All of the raw python functions in Index0 are defined in the
+            worm_ops.py module, and are mapped and built into "machine code"
+            in the wormos.py module. 
         """
         try:
             while not self.cpu.REG[5]:

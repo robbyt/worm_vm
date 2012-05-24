@@ -8,7 +8,8 @@ import wormos_bc_parser
 
 class WormOS(object):
     """ Provides a meta-program for mapping opcode to python functions,
-        and storage for the program stack
+        and facilities for building an "exe" (parsed raw bytecode) and
+        worm "machine code" (a list of tuples, with optional arguments).
     """
 
     def __init__(self, debug=False):
