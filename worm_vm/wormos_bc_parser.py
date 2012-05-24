@@ -3,6 +3,8 @@ from lepl import Any, Literal, Literals, Newline, Optional, Or
 # start a cpu instance and find out what our registers are called
 from cpu import Cpu
 _cpu = Cpu()
+
+# a list of all valid register names, used for matching register targets.
 _REG_NAMES = _cpu.register_nums_as_strings
 
 def my_flat(d):
@@ -11,7 +13,11 @@ def my_flat(d):
     """
     return int("".join(tuple(d)), 16)
 
+# setup a matcher for valid register names to ensure we won't try to operate
+# on registers that don't exist.
 reg = Literals(*_REG_NAMES)
+
+# there is probably a better way to do this.
 five_digits = Any() & Any() & Any() & Any() & Any() > my_flat
 six_digits = Any() & Any() & Any() & Any() & Any() & Any() > my_flat
 seven_digits = Any() & Any() & Any() & Any() & Any() & Any() & Any() > my_flat
@@ -55,7 +61,7 @@ op_jmp_nz = Literal('D') & op_jmp_base
 op_jmp_gt = Literal('E') & op_jmp_base
 op_jmp_lt = Literal('F') & op_jmp_base
 
-
+# setup a big parser, that does an OR match on any valid filters
 parser = Or(op_noop, op_set, op_move, op_load, op_store, op_read, op_write, 
                  op_add, op_sub, op_mul, op_div, op_jmp, op_jmp_z, op_jmp_nz,
                  op_jmp_gt, op_jmp_lt)
